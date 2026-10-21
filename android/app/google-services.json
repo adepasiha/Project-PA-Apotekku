@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "798415949995",
+    "project_id": "apotekku-e15bc",
+    "storage_bucket": "apotekku-e15bc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798415949995:android:b5eb8e6d0f743af18a27ee",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGec34s9JsuU0LkahFAIJBT7HIQHl7SKs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

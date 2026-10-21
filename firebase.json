@@ -1,0 +1,27 @@
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "apotekku-e15bc",
+          "appId": "1:798415949995:android:b5eb8e6d0f743af18a27ee",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "apotekku-e15bc",
+          "configurations": {
+            "web": "1:798415949995:web:661273d67201d03b8a27ee"
+          }
+        }
+      }
+    }
+  }
+}

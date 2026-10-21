@@ -1,0 +1,67 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Fungsi untuk mengecek apakah user sudah login
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Fungsi untuk mengecek apakah user yang login adalah admin
+    // (Mengecek field 'role' di dalam dokumen collection 'users')
+    function isAdmin() {
+      return isAuthenticated() &&
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // 1. Aturan untuk Koleksi Users
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow create: if isAuthenticated() &&
+        request.auth.uid == userId &&
+        request.resource.data.role == 'customer';
+      allow update: if isAdmin() ||
+        (isAuthenticated() &&
+          request.auth.uid == userId &&
+          request.resource.data.role == resource.data.role &&
+          request.resource.data.diff(resource.data).affectedKeys()
+            .hasOnly([
+              'namaLengkap',
+              'email',
+              'noHp',
+              'alamatPengiriman',
+              'profileImageUrl'
+            ]));
+      allow delete: if isAdmin();
+    }
+
+    // 2. Aturan untuk Koleksi Obat / Inventaris
+    match /obat/{obatId} {
+      // Siapa saja yang sudah login dapat melihat daftar obat (katalog)
+      allow read: if isAuthenticated();
+      
+      // Hanya admin yang dapat menambah, mengubah, atau menghapus data obat
+      allow write: if isAdmin();
+    }
+
+    // 3. Aturan untuk Koleksi Transaksi / Pesanan
+    match /transaksi/{transaksiId} {
+      // Customer dapat membaca transaksi miliknya sendiri, admin dapat membaca semua transaksi
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || isAdmin());
+      
+      // Customer dapat membuat pesanan baru, admin dapat memperbarui status pesanan
+      allow create: if isAuthenticated() &&
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.items is list &&
+        request.resource.data.items.size() > 0 &&
+        request.resource.data.totalHarga is number &&
+        request.resource.data.totalHarga > 0 &&
+        request.resource.data.metodePembayaran in
+          ['Tunai', 'E-Wallet'] &&
+        request.resource.data.status in
+          ['Diproses', 'Menunggu konfirmasi apotek', 'Menunggu verifikasi resep'];
+      allow update, delete: if isAdmin();
+    }
+  }
+}

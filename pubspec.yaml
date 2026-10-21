@@ -1,0 +1,58 @@
+name: apotekku
+description: "Aplikasi Manajemen dan Penjualan Obat ApotekKu"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management Provider
+  provider: ^6.1.2
+
+  # Firebase Packages
+  firebase_core: ^2.32.0
+  firebase_auth: ^4.17.8
+  cloud_firestore: ^4.15.8
+  firebase_storage: ^11.7.7
+  image_picker: ^1.2.4
+
+  # Helper & UI Packages
+  cached_network_image: ^3.3.1
+  cupertino_icons: ^1.0.6
+  image: ^4.12.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Pendaftaran Aset Gambar
+  assets:
+    - assets/images/logo_apotek.png
+    - assets/images/paracetamol.png
+    - assets/images/amoxicillin.png
+    - assets/images/vitamin_c.png
+    - assets/images/amlodipine.png
+    - assets/images/herbakof.png
+    - assets/images/ibuprofen.png
+    - assets/images/jahe_merah.png
+    - assets/images/kunyit_asam.png
+    - assets/images/madu_herbal.png
+    - assets/images/minyak_kayu_putih.png
+    - assets/images/vitamin_b_kompleks.png
+    - assets/images/vitamin_d3.png
+    - assets/images/vitamin_e.png
+    - assets/images/zinc.png
+    - assets/images/loratadine.jpg
+    - assets/images/metformin.jpg
+    - assets/images/multivitamin.jpg
+    - assets/images/antasida.jpg
