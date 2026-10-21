@@ -1,72 +1,137 @@
-# 🏥 ApotekKu - Aplikasi Manajemen & Penjualan Obat
+# 🏥 ApotekKu — Aplikasi Manajemen & Penjualan Obat
 
-**ApotekKu** adalah aplikasi berbasis mobile (Flutter) yang terintegrasi dengan Firebase untuk membantu pengelolaan inventaris apotek bagi pihak admin serta mempermudah pelanggan dalam mencari, memesan, dan membeli produk kesehatan secara digital.
-
----
+**ApotekKu** adalah aplikasi mobile berbasis Flutter yang terintegrasi dengan Firebase. Aplikasi ini membantu admin mengelola inventaris dan pesanan obat serta memudahkan pelanggan mencari, memesan, dan membeli produk kesehatan.
 
 ## 📱 Fitur Utama
 
-### 🛠️ Fitur Admin (Apotek)
-* **Dashboard Admin**: Ringkasan statistik performa apotek, total penjualan, dan status inventaris.
-* **Manajemen Inventaris**: Tambah, ubah, hapus, dan pantau stok obat secara *real-time*.
-* **Manajemen Pesanan**: Memantau dan mengelola pesanan masuk dari pelanggan.
-* **Laporan & Notifikasi**: Peringatan otomatis untuk stok obat yang hampir habis (*low stock*) serta pengingat produk kedaluwarsa (*expired date*).
+### 🛠️ Admin
+- **Dashboard:** Menampilkan ringkasan informasi apotek.
+- **Manajemen Inventaris:** Menambah, melihat, mengubah, dan menghapus data obat (CRUD).
+- **Manajemen Pesanan:** Memantau dan mengelola pesanan pelanggan.
+- **Laporan:** Membantu memantau penjualan dan stok obat.
+- **Notifikasi Stok:** Mendukung pemantauan stok obat yang hampir habis sesuai implementasi aplikasi.
 
-### 🛍️ Fitur Pelanggan (Customer)
-* **Katalog Produk**: Menjelajahi berbagai macam produk obat, vitamin, dan suplemen berdasarkan kategori.
-* **Pencarian & Filter**: Mencari produk dengan cepat berdasarkan nama atau kategori.
-* **Keranjang Belanja**: Menambah, mengurangi, atau menghapus item belanjaan sebelum checkout.
-* **Checkout & Pembayaran**: Memilih alamat pengiriman dan berbagai metode pembayaran (Tunai, QRIS, Transfer Bank, E-Wallet).
-* **Riwayat Pesanan & Profil**: Melihat status pesanan aktif, riwayat transaksi sebelumnya, serta pengaturan profil pengguna.
-
----
+### 🛍️ Pelanggan
+- **Katalog Produk:** Melihat daftar obat, vitamin, dan produk kesehatan.
+- **Pencarian:** Mencari produk berdasarkan nama atau kategori.
+- **Keranjang Belanja:** Menambah dan menghapus produk dari keranjang.
+- **Checkout:** Mengisi informasi pesanan dan memilih metode pembayaran yang tersedia.
+- **Profil dan Riwayat:** Mengelola profil serta melihat riwayat pesanan.
 
 ## 🛠️ Teknologi yang Digunakan
 
-* **Framework**: [Flutter](https://flutter.dev/) (Dart)
-* **Backend & Database**: [Firebase Authentication](https://firebase.google.com/docs/auth) & [Cloud Firestore](https://firebase.google.com/docs/firestore)
-* **Manajemen Paket**:
-  * `firebase_core`, `firebase_auth`, `cloud_firestore` (Integrasi Firebase)
-  * `cached_network_image` (Optimasi pemuatan gambar)
-  * `cupertino_icons` (Gaya ikon iOS/Material)
+- **Flutter:** Framework untuk membangun aplikasi mobile.
+- **Dart:** Bahasa pemrograman.
+- **Firebase Authentication:** Mengelola autentikasi pengguna.
+- **Cloud Firestore:** Menyimpan data obat, pengguna, dan transaksi sesuai implementasi.
+- **Firebase Storage:** Menyimpan gambar produk apabila fitur penyimpanan gambar Firebase digunakan.
+- **Provider:** Membantu pengelolaan state aplikasi.
 
----
-
-## 📂 Struktur Direktori Proyek
+## 📂 Struktur Direktori
 
 ```text
 lib/
-│
-├── main.dart                 # Titik masuk utama aplikasi
-├── app.dart                  # Konfigurasi aplikasi & routing utama
-│
-├── models/                   # Model Data (DTO)
+├── main.dart
+├── app.dart
+├── models/
 │   ├── user_model.dart
 │   ├── obat_model.dart
 │   └── transaksi_model.dart
-│
-├── screens/                  # Tampilan / Antarmuka Pengguna
+├── provider/
+├── screens/
 │   ├── auth/
-│   │   ├── login_screen.dart
-│   │   └── register_screen.dart
 │   ├── admin/
-│   │   ├── dashboard_admin.dart
-│   │   ├── inventaris_screen.dart
-│   │   ├── pesanan_screen.dart
-│   │   └── laporan_screen.dart
 │   └── customer/
-│       ├── home_screen.dart
-│       ├── katalog_screen.dart
-│       ├── keranjang_screen.dart
-│       ├── checkout_screen.dart
-│       └── profil_screen.dart
-│
-├── services/                 # Layanan Backend & Database
-│   ├── auth_service.dart
-│   └── database_service.dart
-│
-├── widgets/                  # Komponen UI yang Dapat Digunakan Kembali
-│   └── obat_card.dart
-│
-└── utils/                    # Utilitas & Tema Global
-    └── app_theme.dart
+├── services/
+├── utils/
+└── widgets/
+
+assets/
+└── images/
+```
+
+## ⚙️ Cara Menjalankan Aplikasi
+
+Pastikan Flutter SDK, Android Studio, dan Git sudah terpasang.
+
+1. Clone repositori:
+
+   ```bash
+   git clone https://github.com/adepasiha/Project-PA-Apotekku.git
+   ```
+
+2. Masuk ke folder proyek:
+
+   ```bash
+   cd Project-PA-Apotekku
+   ```
+
+3. Instal dependensi:
+
+   ```bash
+   flutter pub get
+   ```
+
+4. Konfigurasikan Firebase sesuai proyek Firebase yang digunakan.
+
+5. Jalankan aplikasi:
+
+   ```bash
+   flutter run
+   ```
+
+## 🔥 Cara Menghubungkan Firebase
+
+1. Buka [Firebase Console](https://console.firebase.google.com/).
+2. Buat proyek Firebase atau buka proyek Firebase yang sudah digunakan.
+3. Tambahkan aplikasi Android menggunakan **application ID** yang sesuai dengan proyek Flutter.
+4. Hubungkan Flutter dengan Firebase menggunakan FlutterFire CLI:
+
+   ```bash
+   dart pub global activate flutterfire_cli
+   flutterfire configure
+   ```
+
+5. Pastikan file `firebase_options.dart` dibuat dan konfigurasi proyek sesuai.
+6. Tambahkan paket Firebase yang diperlukan melalui `pubspec.yaml`, misalnya:
+
+   ```bash
+   flutter pub add firebase_core firebase_auth cloud_firestore
+   ```
+
+   Jika aplikasi menggunakan unggah gambar ke Firebase Storage, tambahkan:
+
+   ```bash
+   flutter pub add firebase_storage image_picker
+   ```
+
+7. Inisialisasikan Firebase sebelum menjalankan aplikasi, sesuai konfigurasi pada `main.dart`.
+
+### Alur Kerja Firebase
+
+- **Authentication:** Memverifikasi akun pengguna jika fitur login dan registrasi menggunakannya.
+- **Cloud Firestore:** Menyimpan dan mengambil data yang digunakan aplikasi.
+- **Firebase Storage:** Menyimpan file gambar produk apabila fitur tersebut diaktifkan.
+
+Pastikan aturan keamanan Firebase dikonfigurasi dengan benar agar hanya pengguna yang berwenang dapat melakukan perubahan data.
+
+## 📦 Build APK
+
+Untuk membuat APK yang dapat dipasang pada perangkat Android, jalankan:
+
+```bash
+flutter build apk --release
+```
+
+File APK akan dihasilkan di:
+
+```text
+build/app/outputs/flutter-apk/app-release.apk
+```
+
+## 👨‍💻 Pengembang
+
+**Proyek:** ApotekKu — Aplikasi Manajemen & Penjualan Obat
+
+**Repository GitHub:**  
+https://github.com/adepasiha/Project-PA-Apotekku
